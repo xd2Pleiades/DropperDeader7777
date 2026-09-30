@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bjldednrtamir"]
 
+[ext_resource type="PackedScene" uid="uid://cot22dyxcwlan" path="res://Scenes/human.tscn" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://dhthi4m5gu1rh" path="res://Scenes/UI.tscn" id="1_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://bp8m6dixxv8p5" path="res://icon.svg" id="2_8gbba"]
 
@@ -10,3 +11,5 @@
 [node name="Icon" type="Sprite2D" parent="." unique_id=702326615]
 position = Vector2(-220, 89)
 texture = ExtResource("2_8gbba")
+
+[node name="Human" parent="." unique_id=1892341140 instance=ExtResource("1_8gbba")]
