@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://bjldednrtamir"]
 
 [ext_resource type="PackedScene" uid="uid://dhthi4m5gu1rh" path="res://UI.tscn" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://bp8m6dixxv8p5" path="res://icon.svg" id="1_ig7tw"]
 
 [node name="World" type="Node2D" unique_id=287468208]
 
 [node name="UI" parent="." unique_id=2101601197 instance=ExtResource("1_0xm2m")]
-
-[node name="Icon" type="Sprite2D" parent="." unique_id=428382966]
-position = Vector2(106, 72)
-texture = ExtResource("1_ig7tw")

@@ -23,7 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	var direction := Vector2.ZERO
-	
+	# Movement Controls
 	direction.x = Input.get_axis("camera_left", "camera_right")
 	direction.y = Input.get_axis("camera_up", "camera_down")
 	
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	if not dragging and not wasd_active:
 		var mouse_pos = get_viewport().get_mouse_position()
 		var screen_size = get_viewport().get_visible_rect().size
-		
+		# Edge Scrolling
 		if mouse_pos.x < edge_margin:
 			direction.x = -1.0
 		elif mouse_pos.x > screen_size.x - edge_margin:
