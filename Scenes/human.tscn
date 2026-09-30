@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bp8m6dixxv8p5" path="res://icon.svg" id="2_86l0o"]
 [ext_resource type="Script" uid="uid://ck88b8f07xm8i" path="res://Scripts/state_machine.gd" id="3_42mg8"]
 [ext_resource type="Script" uid="uid://dafsahy6g8d4" path="res://States/humanIdle.gd" id="3_f3uon"]
-[ext_resource type="Script" uid="uid://emtl57bx88xp" path="res://Scripts/movement_component.gd" id="5_8atu2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3uon"]
 radius = 69.0
@@ -23,6 +22,3 @@ script = ExtResource("3_42mg8")
 
 [node name="Human Idle" type="Node" parent="State Machine" unique_id=1741969878]
 script = ExtResource("3_f3uon")
-
-[node name="MovementComponent" type="Node" parent="." unique_id=864746978]
-script = ExtResource("5_8atu2")

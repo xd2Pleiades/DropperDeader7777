@@ -1,40 +1,40 @@
 extends Node
 class_name MovementComponent
 
-enum MovementState { CRAWL, CROUCH, WALK, JOG, RUN, SPRINT }
+enum MovementState { crawl, crouch, walk, jog, run, sprint }
 
-var current_state : MovementState = MovementState.WALK
+var current_state : MovementState = MovementState.walk
 
 var speed_multipliers : Dictionary = {
-	MovementState.CRAWL: 0.40,
-	MovementState.CROUCH: 0.50,
-	MovementState.WALK: 1.00,
-	MovementState.JOG: 1.60,
-	MovementState.RUN: 2.20,
-	MovementState.SPRINT: 4.80
+	MovementState.crawl: 0.40,
+	MovementState.crouch: 0.50,
+	MovementState.walk: 1.00,
+	MovementState.jog: 1.60,
+	MovementState.run: 2.20,
+	MovementState.sprint: 4.80
 }
 
 var stamina_drain : Dictionary = {
-	MovementState.CRAWL: 0.0,
-	MovementState.CROUCH: 0.0,
-	MovementState.WALK: 0.0,
-	MovementState.JOG: 2.50,
-	MovementState.RUN: 4.00,
-	MovementState.SPRINT: 10.00
+	MovementState.crawl: 0.0,
+	MovementState.crouch: 0.0,
+	MovementState.walk: 0.0,
+	MovementState.jog: 2.50,
+	MovementState.run: 4.00,
+	MovementState.sprint: 10.00
 }
 
 var stamina_recovery : Dictionary = {
-	MovementState.CRAWL: 3.0,
-	MovementState.CROUCH: 4.0,
-	MovementState.WALK: 5.0,
-	MovementState.JOG: 0.0,
-	MovementState.RUN: 0.0,
-	MovementState.SPRINT: 0.0
+	MovementState.crawl: 3.0,
+	MovementState.crouch: 4.0,
+	MovementState.walk: 5.0,
+	MovementState.jog: 0.0,
+	MovementState.run: 0.0,
+	MovementState.sprint: 0.0
 }
 
-const BASE_SPEED : float = 100.0
-const MAX_STAMINA : float = 100.0
-var stamina : float = MAX_STAMINA
+const base_speed : float = 100.0
+const max_stamina : float = 100.0
+var stamina : float = max_stamina
 
 func _process(delta: float):
 	var drain = stamina_drain[current_state]
@@ -44,12 +44,12 @@ func _process(delta: float):
 		stamina -= drain * delta
 		if stamina <= 0:
 			stamina = 0
-			set_state(MovementState.WALK)
+			set_state(MovementState.walk)
 	elif recovery > 0:
-		stamina = min(stamina + recovery * delta, MAX_STAMINA)
+		stamina = min(stamina + recovery * delta, max_stamina)
 
 func set_state(new_state: MovementState):
 	current_state = new_state
 
 func get_speed() -> float:
-	return BASE_SPEED * speed_multipliers[current_state]
+	return base_speed * speed_multipliers[current_state]
