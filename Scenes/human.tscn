@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cot22dyxcwlan"]
 
-[ext_resource type="Script" uid="uid://cpw6jeu1ytwke" path="res://human.gd" id="1_11jcu"]
+[ext_resource type="Script" uid="uid://cpw6jeu1ytwke" path="res://Scripts/human.gd" id="1_11jcu"]
 [ext_resource type="Texture2D" uid="uid://bp8m6dixxv8p5" path="res://icon.svg" id="2_86l0o"]
+[ext_resource type="Script" uid="uid://dafsahy6g8d4" path="res://States/humanIdle.gd" id="3_f3uon"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3uon"]
 radius = 69.0
@@ -14,3 +15,8 @@ texture = ExtResource("2_86l0o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=123867542]
 shape = SubResource("CircleShape2D_f3uon")
+
+[node name="State Machine" type="Node" parent="." unique_id=1301535460]
+
+[node name="Human Idle" type="Node" parent="State Machine" unique_id=1741969878]
+script = ExtResource("3_f3uon")
