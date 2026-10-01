@@ -23,13 +23,16 @@ func _physics_process(delta):
 		current_state.Physics_Update(delta)
 
 func on_child_transition(state, new_state_name):
+	print("Transition requested: ", new_state_name)
 	if state != current_state:
+		print("Rejected - not current state")
 		return
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:
+		print("State not found: ", new_state_name)
+		print("Available states: ", states.keys())
 		return
 	if current_state:
 		current_state.Exit()
 	new_state.Enter()
-	
 	current_state = new_state

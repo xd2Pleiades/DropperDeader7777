@@ -3,7 +3,7 @@ class_name HumanIdle
 
 var human : CharacterBody2D
 var movement : MovementComponent
-var home_position : Vector2
+var home_position : Vector2 = Vector2.ZERO
 var target_position : Vector2
 
 var wander_radius : float = 200.0
@@ -17,7 +17,8 @@ var wait_timer : float = 0.0
 func Enter():
 	human = get_parent().get_parent()
 	movement = human.get_node("MovementComponent")
-	home_position = human.global_position
+	if home_position == Vector2.ZERO:
+		home_position = human.global_position
 	start_walk_out()
 
 func start_walk_out():
@@ -38,16 +39,22 @@ func start_waiting():
 	wait_timer = randf_range(0.5, 2.0)
 
 func Update(delta: float):
+	var view = human.get_node("ViewComponent")
+
 	match phase:
 		Phase.LOOKING:
 			look_timer -= delta
 			human.rotation += randf_range(-1.0, 1.0) * delta * 2.0
 			if look_timer <= 0:
 				start_walk_home()
+			if view.visible.size() > 0:
+				emit_signal("Transitioned", self, "human curious")
 		Phase.WAITING:
 			wait_timer -= delta
 			if wait_timer <= 0:
 				start_walk_out()
+			if view.visible.size() > 0:
+				emit_signal("Transitioned", self, "human curious")
 
 func Physics_Update(_delta: float):
 	match phase:

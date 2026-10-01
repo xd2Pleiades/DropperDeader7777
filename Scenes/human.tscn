@@ -4,9 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://bp8m6dixxv8p5" path="res://icon.svg" id="2_86l0o"]
 [ext_resource type="Script" uid="uid://ck88b8f07xm8i" path="res://Scripts/state_machine.gd" id="3_42mg8"]
 [ext_resource type="Script" uid="uid://dafsahy6g8d4" path="res://States/humanIdle.gd" id="3_f3uon"]
+[ext_resource type="Script" uid="uid://emtl57bx88xp" path="res://Scripts/movement_component.gd" id="5_8atu2"]
+[ext_resource type="Script" uid="uid://cv2p7c1ln0gjb" path="res://Scenes/human_curious.gd" id="5_48wql"]
+[ext_resource type="Script" uid="uid://dgtu2dwhatddr" path="res://Scripts/view_component.gd" id="6_jukff"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3uon"]
 radius = 69.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8atu2"]
+radius = 500.0
 
 [node name="Human" type="CharacterBody2D" unique_id=1892341140]
 script = ExtResource("1_11jcu")
@@ -17,8 +23,25 @@ texture = ExtResource("2_86l0o")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=123867542]
 shape = SubResource("CircleShape2D_f3uon")
 
+[node name="Area2D" type="Area2D" parent="CollisionShape2D" unique_id=76314647]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Area2D" unique_id=255212184]
+shape = SubResource("CircleShape2D_8atu2")
+
 [node name="State Machine" type="Node" parent="." unique_id=1301535460]
 script = ExtResource("3_42mg8")
 
 [node name="Human Idle" type="Node" parent="State Machine" unique_id=1741969878]
 script = ExtResource("3_f3uon")
+
+[node name="Human Curious" type="Node" parent="State Machine" unique_id=175401814]
+script = ExtResource("5_48wql")
+
+[node name="MovementComponent" type="Node" parent="." unique_id=1822955362]
+script = ExtResource("5_8atu2")
+
+[node name="ViewComponent" type="Node" parent="." unique_id=1085121340]
+script = ExtResource("6_jukff")
+
+[connection signal="body_entered" from="CollisionShape2D/Area2D" to="ViewComponent" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="CollisionShape2D/Area2D" to="ViewComponent" method="_on_area_2d_body_exited"]
